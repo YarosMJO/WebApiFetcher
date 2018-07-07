@@ -1,0 +1,167 @@
+﻿@model IEnumerable<WebApiFetcher.Models.User>
+@{
+    ViewData["Title"] = "GetUsers";
+}
+
+<html>
+<body>
+
+    @if (Model != null)
+    {
+        <table class="table table-condensed table-hover" style="border-collapse:collapse">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().avatar)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().Posts)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.avatar)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email)
+
+                        </td>
+                        <td>
+                            <button type="button" data-toggle="collapse" class="accordion-toggle btn btn-success" data-target="#@(item.GetHashCode())">
+                                Розгорнути Posts
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="hiddenRow">
+                            <div class="accordian-body collapse" id="@(item.GetHashCode())">
+                                <table class="table table-condensed" style="border-collapse:collapse">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.First().Posts.First().title)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.First().Posts.First().createdAt)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.First().Posts.First().likes)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.First().Posts.First().Comments)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var emp in item.Posts)
+                                        {
+
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => emp.title)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => emp.createdAt)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => emp.likes)
+                                                </td>
+                                                <td>
+                                                    <button type="button" data-toggle="collapse" class="accordion-toggle btn btn-success" data-target="#@(emp.id.GetHashCode())">
+                                                        Розгорнути Comments
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="6" class="hiddenRow">
+                                                    <div class="accordian-body collapse" id="@(emp.id.GetHashCode())">
+                                                        <table class="table table-condensed" style="border-collapse:collapse">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>
+                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().id)
+                                                                    </th>
+                                                                    <th>
+                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().postId)
+                                                                    </th>
+                                                                    <th>
+                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().likes)
+                                                                    </th>
+                                                                    <th>
+                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().createdAt)
+                                                                    </th>
+                                                                    <th>
+                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().body)
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                           
+                                                                <tbody>
+                                                                    @if (emp?.Comments?.Count != 0)
+                                                                    {
+                                                                        <p>ssss</p>
+
+                                                                    }
+                                                                    @*@foreach (var com in emp.Comments)
+                                                                    {
+
+                                                                        <tr>
+                                                                            <td>
+                                                                                @Html.DisplayFor(modelItem => com.id)
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.DisplayFor(modelItem => com.createdAt)
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.DisplayFor(modelItem => com.likes)
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.DisplayFor(modelItem => com.createdAt)
+                                                                            </td>
+                                                                            <td>
+                                                                                @Html.DisplayFor(modelItem => com.body)
+                                                                            </td>
+                                                                        </tr>
+                                                                    }*@
+                                                                    
+
+                                                                </tbody>
+                                                            
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+</body>
+</html>
+
+@*<td>
+        <a asp-action="Details" asp-route-id="@item.id">Details</a>
+    </td>*@

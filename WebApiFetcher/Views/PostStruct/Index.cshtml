@@ -1,0 +1,60 @@
+﻿@model WebApiFetcher.Models.PostStruct
+@{
+    ViewData["Title"] = "PostStruct";
+}
+
+<html>
+<body>
+    <form method="POST">
+        <label for="userId">User id-></label>
+        <input type="text" data-val="true" id="userId" name="userId" size="15" class="rounded"
+               placeholder="Enter user id" data-val-required="The user id field is required." />
+        <input type="submit" />
+
+    </form>
+    @if (Model != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.latestPost)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.bestCommented)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.bestLiked)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.postsCount)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => model.latestPost)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.bestCommented)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.bestLiked)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.postsCount)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="">Details</a>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+    }
+</body>
+</html>
+

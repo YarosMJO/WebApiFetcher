@@ -1,0 +1,62 @@
+﻿@model IEnumerable<WebApiFetcher.Models.Todo>
+@{
+    ViewData["Title"] = "Index";
+    //var Dictionary = (Dictionary<int?, string>)ViewData["dict"];
+
+}
+<html>
+<body>
+    <form method="POST">
+        <label for="userId">User id-></label>
+        <input type="text" data-val="true" id="userId" name="userId" size="15" class="rounded"
+               placeholder="Enter user id" data-val-required="The user id field is required." />
+        <input type="submit" />
+    </form>
+    @if (Model != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().createdAt)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().isComplete)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().userId)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.createdAt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.isComplete)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.userId)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.id">Details</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+</body>
+</html>

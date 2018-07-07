@@ -1,0 +1,78 @@
+﻿
+
+
+@model IEnumerable<WebApiFetcher.Models.Post>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html>
+<body>
+    <form method="POST">
+        <label for="userId">User id-></label>
+        <input type="text" data-val="true" id="userId" name="userId" size="15" class="rounded"
+               placeholder="Enter user id" data-val-required="The user id field is required." />
+        <input type="submit" />
+    </form>
+    @if (Model != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().userId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().createdAt)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().likes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().body)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.First().Comments)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.userId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.createdAt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.likes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.body)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Comments)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.id">Details</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+</body>
+</html>
+
+

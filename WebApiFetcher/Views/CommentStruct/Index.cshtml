@@ -1,0 +1,55 @@
+﻿@model WebApiFetcher.Models.CommentStruct
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html>
+<body>
+    <form method="POST">
+        <label for="userId">User id-></label>
+        <input type="text" data-val="true" id="userId" name="userId" size="15" class="rounded"
+               placeholder="Enter user id" data-val-required="The user id field is required." />
+        <input type="submit" />
+
+    </form>
+    @if (Model != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.longestComment)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.mostLikedComment)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.commentsCount)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.longestComment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.mostLikedComment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.commentsCount)
+                    </td>
+                   
+                    <td>
+                        <a asp-action="Details" asp-route-id="">Details</a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    }
+</body>
+</html>
+
