@@ -22,7 +22,7 @@ namespace WebApiFetcher.Controllers
 
             if (ModelState.IsValid)
             {
-                comments = service.GetCommentsAsync(userId).Result;
+                comments = service.GetComments(userId);
             }
 
             return View(comments);

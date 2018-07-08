@@ -16,14 +16,14 @@ namespace WebApiFetcher.Controllers
         [HttpPost]
         public IActionResult Index(int? userId)
         {
-            TodoService service = new TodoService();
+            TodoService Service = new TodoService();
             List<Todo> todos = new List<Todo>();
 
             if (ModelState.IsValid)
             {
                 if (userId == null){ return NotFound(); }
 
-                todos = service.GetTodosAsync(userId).Result;
+                todos = Service.GetTodos(userId);
               
             }
             return View(todos);

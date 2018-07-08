@@ -2,49 +2,23 @@
 @{
     ViewData["Title"] = "Index";
 }
-
 <html>
 <body>
-    @if (Model != null)
-    {
-        <table class="table table-bordered table-hover d-lg-table-cell">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">
-                       @Html.DisplayNameFor(model => model.Avatar)
-                    </th>
-                    <th scope="col">
-                        @Html.DisplayNameFor(model => model.Name)
-                    </th>
-                    <th scope="col">
-                        @Html.DisplayNameFor(model => model.CreatedAt)
-                    </th>
-                    <th scope="col">
-                        @Html.DisplayNameFor(model => model.Email)
-                    </th>
-
-                </tr>
-            </thead>
-            <tbody>
-                    <tr scope="row">
-                    
-                        <td>
-                            <img src="@Html.DisplayFor(model => model.Avatar)" />
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.CreatedAt)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.Email)
-                        </td>
-                      
-                    </tr>
-            </tbody>
-        </table>
-    }
+    <div class="container">
+        <div class="row">
+            <div class="profile-class col-md-10 offset-1">
+                <div class=" image-class col-md-3 col-sm-10">
+                    <img src="@Html.DisplayFor(model => model.Avatar)" />
+                </div>
+                <div class=" description-class col-md-5 col-sm-10">
+                    <h2> @Html.DisplayFor(model => model.Name)</h2>
+                    Created at: <span class="createdAt-text">@Html.DisplayFor(model => model.CreatedAt)</span>
+                    <p>E-mail:<span> @Html.DisplayFor(model => model.Email)</span></p>
+                    <button type="button" class="btn btn-info " target="_blank" href="@Url.Action("Index","PostStruct",new { userId = Model.Id })"> Posts </button>
+                    <button type="button" class="btn btn-info"  target="_blank" href="@Url.Action("Index","CommentStruct",new { userId = Model.Id })">Comments </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
-

@@ -11,6 +11,7 @@ namespace WebApiFetcher
 {
     public class HelperService
     {
+        public List<User> UsersList { get; private set; }
         HttpClient client;
         public HelperService()
         {
@@ -19,6 +20,7 @@ namespace WebApiFetcher
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
+            UsersList = RunAsync().Result;
         }
 
         public async Task<List<T>> GetAsync<T>(string path)
@@ -30,33 +32,46 @@ namespace WebApiFetcher
         }
         public async Task<List<User>> RunAsync()
         {
-
             try
             {
-
                 List<User> Users = await GetAsync<User>("https://5b128555d50a5c0014ef1204.mockapi.io/users");
                 List<Todo> Todos = await GetAsync<Todo>("https://5b128555d50a5c0014ef1204.mockapi.io/todos");
                 List<Post> Posts = await GetAsync<Post>("https://5b128555d50a5c0014ef1204.mockapi.io/posts");
                 List<Comment> Comments = await GetAsync<Comment>("https://5b128555d50a5c0014ef1204.mockapi.io/comments");
 
-                var PostsWithComments = from p in Posts
-                                        join c in Comments on p.Id equals c.PostId
-                                        select (Posts: p.Id, p.CreatedAt, p.Title, p.Body, p.UserId, p.Likes, p.Comments = Comments);
+                var WithComments = Posts.GroupJoin(Comments,post => post.Id, comment => comment.PostId,(post, commentList) =>
+                new Post()
+                {
+                    Id = post.Id,
+                    CreatedAt = post.CreatedAt,
+                    Title = post.Title,
+                    Body = post.Body,
+                    UserId = post.UserId,
+                    Likes = post.Likes,
+                    Comments = commentList.Where(comment => comment.PostId == post.Id).ToList()
+                });
 
-                List<User> result = (from u in Users
-                                     join p in PostsWithComments on u.Id equals p.UserId
-                                     join t in Todos on u.Id equals t.UserId
-                                     select new User
-                                     {
-                                         Id = u.Id,
-                                         CreatedAt = u.CreatedAt,
-                                         Name = u.Name,
-                                         Avatar = u.Avatar,
-                                         Email = u.Email,
-                                         Posts = u.Posts = Posts,
-                                         Todos = u.Todos = Todos
-                                     }).ToList();
-                return result;
+                var WithPosts = Users.GroupJoin(WithComments, user => user.Id, post => post.UserId,(user, postList) =>
+                new User{
+                        Id = user.Id,
+                        CreatedAt = user.CreatedAt,
+                        Name = user.Name,
+                        Avatar = user.Avatar,
+                        Email = user.Email,
+                        Posts = postList.Where(post => post.UserId == user.Id).ToList()
+                    });
+
+                var Joined = WithPosts.GroupJoin(Todos,user => user.Id, todo => todo.UserId,(user, todoList) =>
+                new User {
+                      Id = user.Id,
+                      CreatedAt = user.CreatedAt,
+                      Name = user.Name,
+                      Avatar = user.Avatar,
+                      Email = user.Email,
+                      Posts = user.Posts,
+                      Todos = todoList.Where(todo => todo.UserId == user.Id).ToList()
+                  }).ToList();
+                return Joined;
             }
             catch (Exception e)
             {

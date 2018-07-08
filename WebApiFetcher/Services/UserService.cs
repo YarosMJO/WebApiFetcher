@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebApiFetcher;
 using WebApiFetcher.Models;
 
@@ -9,14 +7,12 @@ namespace Services
 {
     public class UserService: HelperService
     {
-        public async Task<List<User>> GetUsers()
+        public List<User> GetUsers()
         {
-            List<User> users = await RunAsync();
-            users = users.OrderBy(x => x.Name).ToList();
+            List<User> users = UsersList?.OrderBy(x => x?.Name)?.ToList();
             users?.ForEach(x => x.Todos.Sort(new Comparer()));
             return users;
         }
-
         private class Comparer : IComparer<Todo>
         {
             public int Compare(Todo x, Todo y)

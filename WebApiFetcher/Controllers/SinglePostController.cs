@@ -12,13 +12,12 @@ namespace WebApiFetcher.Services
     {
         public ActionResult Index(int id)
         {
-            UserService service = new UserService();
+            UserService Service = new UserService();
             List<User> users = new List<User>();
             Post post = new Post();
             if (ModelState.IsValid)
             {
-                users = service.GetUsers()?.Result;
-                post = users.SelectMany(x => x.Posts).FirstOrDefault(x => x.Id == id);
+              post = Service.UsersList.SelectMany(x => x.Posts).FirstOrDefault(x => x.Id == id);
             }
             return View(post);
         }

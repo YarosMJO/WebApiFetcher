@@ -22,7 +22,7 @@ namespace WebApiFetcher.Controllers
 
             if (ModelState.IsValid)
             {
-                commentStruct = service.GetCommentStructureAsync(userId).Result;
+                commentStruct = service.GetCommentStructure(userId);
             }
 
             return View(commentStruct);

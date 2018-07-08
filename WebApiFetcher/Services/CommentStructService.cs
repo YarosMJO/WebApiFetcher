@@ -1,16 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using WebApiFetcher.Models;
 
 namespace WebApiFetcher.Services
 {
     public class CommentStructService: HelperService
     {
-        public async Task<CommentStruct> GetCommentStructureAsync(int? postId)
+        public CommentStruct GetCommentStructure(int? postId)
         {
-            List<User> users = await RunAsync();
-            var posts = users.SelectMany(x => x?.Posts).ToList();
+            var posts = UsersList.SelectMany(x => x?.Posts).ToList();
             var comments = posts.Find(x => x?.Id == postId)?.Comments;
 
             var longestComment = comments?.Find(x => x?.Body?.Length == comments?.Max(y => y?.Body?.Length));

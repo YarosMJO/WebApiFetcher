@@ -9,10 +9,9 @@ namespace WebCoreApi.Services
 {
     public class PostService: HelperService
     {
-        public async Task<PostStruct> GetPostStructureAsync(int? id)
+        public PostStruct GetPostStructure(int? id)
         {
-            List<User> users = await RunAsync();
-            var user = users.FirstOrDefault(y => y.Id == id);
+            var user = UsersList.FirstOrDefault(y => y.Id == id);
 
             var latestPost = user?.Posts?.FirstOrDefault(x => x?.CreatedAt == user?.Posts?.Max(y => y?.CreatedAt));
             var postsCount = latestPost?.Comments?.Count();

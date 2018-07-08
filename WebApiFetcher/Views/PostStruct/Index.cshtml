@@ -5,55 +5,46 @@
 
 <html>
 <body>
-    <form method="POST">
-        <label for="userId">User id-></label>
-        <input type="text" data-val="true" id="userId" name="userId" size="15" class="rounded"
-               placeholder="Enter user id" data-val-required="The user id field is required." />
-        <input type="submit" />
-
+    <form class="form-inline" method="POST">
+        <div class="form-group col-md-offset-3">
+            <label for="userId" class="label label-primary label-btn">Enter user id:</label>
+            <input id="userId" name="userId" class="form-control " />
+        </div>
+        <button type="submit" class="btn btn-success">Send</button>
     </form>
     @if (Model != null)
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LatestPost)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.BestCommented)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.BestLiked)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.PostsCount)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
+    <table class="table table-bordered table-hover table-striped d-lg-table-cell">
+        <thead>
+            <tr>
+                <th>Latest Post</th>
+                <th>Best Commented</th>
+                <th>Best liked</th>
+                <th>Posts Count</th>
+                <th>Undone tasks counts</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.LatestPost)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.BestCommented)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.BestLiked)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.PostsCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.UnTodo)
+                </td>
+            </tr>
 
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(model => model.LatestPost)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.BestCommented)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.BestLiked)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.PostsCount)
-                        </td>
-                        <td>
-                            <a asp-action="Details" asp-route-id="">Details</a>
-                        </td>
-                    </tr>
-
-            </tbody>
-        </table>
+        </tbody>
+    </table>
     }
 </body>
 </html>

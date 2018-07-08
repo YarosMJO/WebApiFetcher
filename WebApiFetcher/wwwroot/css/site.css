@@ -33,6 +33,46 @@
         display: none;
     }
 }
+
 .hiddenRow {
     padding: 0 !important;
+}
+
+.profile-class {
+    margin-top: 50px;
+}
+
+.image-class {
+    margin: 10px;
+}
+
+.image-class > img {
+    margin-top:10px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+    }
+
+.description-class > span {
+    color: gray;
+}
+
+.description-class > h2 {
+    font-size: 30px;
+    padding-bottom: 5px;
+    margin-bottom: 0;
+}
+
+.description-class > p {
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+    .description-class > p > span {
+        color: green;
+    }
+
+.label-btn {
+    font-size:15px;
 }

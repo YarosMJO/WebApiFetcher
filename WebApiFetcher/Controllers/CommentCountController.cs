@@ -18,12 +18,12 @@ namespace WebApiFetcher.Controllers
         [HttpPost]
         public ActionResult Index(int? userId)
         {
-            List<Post> posts = new List<Post>();
+            List<Post> posts = null;
             CommentCountService service = new CommentCountService();
 
             if (ModelState.IsValid)
             {
-                posts = service.GetCommentsCountAsync(userId).Result;
+                posts = service.GetCommentsCount(userId);
             }
 
             return View(posts);

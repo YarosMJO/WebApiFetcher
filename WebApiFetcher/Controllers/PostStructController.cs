@@ -16,12 +16,12 @@ namespace WebApiFetcher.Controllers
         [HttpPost]
         public ActionResult Index(int? userId)
         {
-            PostService service = new PostService();
+            PostService Service = new PostService();
             PostStruct post = null;
 
             if (ModelState.IsValid)
             {
-                post = service.GetPostStructureAsync(userId).Result;
+                post = Service.GetPostStructure(userId);
             }
 
             return View(post);

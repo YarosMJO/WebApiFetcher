@@ -26,19 +26,62 @@
                 @foreach (var item in Model)
                 {
 
-                    <tr>
+                    <tr id="buttons">
                         <td>
-                            <a class="nav-link" href="@Url.Action("Index","SingleUser",new { id = item.Id })">  @Html.DisplayFor(modelItem => item.Name) </a>
+                            <a class="nav-link" target="_blank" href="@Url.Action("Index","SingleUser",new { id = item.Id })">  @Html.DisplayFor(modelItem => item.Name) </a>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td>
-                            <button type="button" data-toggle="collapse" class="accordion-toggle btn btn-success" data-target="#@(item.GetHashCode())">
+                            <button id="posts " type="button" data-toggle="collapse" class="accordion-toggle btn btn-success" data-target="#@(item.GetHashCode())">
                                 Розгорнути Posts
                             </button>
                         </td>
+                        <td>
+                            <button id="todos" type="button" data-toggle="collapse" class="accordion-toggle btn btn-dark" data-target="#@(item.GetHashCode()+1)">
+                                Розгорнути Todos
+                            </button>
+                        </td>
                     </tr>
+                    <tr>
+                        <td colspan="6" class="hiddenRow">
+                            <div class="accordian-body collapse" id="@(item.GetHashCode()+1)">
+                                <table class="table table-condensed" style="border-collapse:collapse">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.First().Todos.First().Name)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.First().Todos.First().CreatedAt)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.First().Todos.First().IsComplete)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var todo in item.Todos)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <a class="nav-link" target="_blank" href="@Url.Action("Index","SinglePost",new { id = todo.Id })">  @Html.DisplayFor(modelItem => todo.Name) </a>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => todo.CreatedAt)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => todo.IsComplete)
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+
                     <tr>
                         <td colspan="6" class="hiddenRow">
                             <div class="accordian-body collapse" id="@(item.GetHashCode())">
@@ -62,10 +105,9 @@
                                     <tbody>
                                         @foreach (var post in item.Posts)
                                         {
-
                                             <tr>
                                                 <td>
-                                                    <a class="nav-link" href="@Url.Action("Index","SinglePost",new { id = post.Id })">  @Html.DisplayFor(modelItem => post.Title) </a>
+                                                    <a class="nav-link" target="_blank" href="@Url.Action("Index","SinglePost",new { id = post.Id })">  @Html.DisplayFor(modelItem => post.Title) </a>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => post.CreatedAt)
                                                 </td>
@@ -73,19 +115,14 @@
                                                     @Html.DisplayFor(modelItem => post.Likes)
                                                 </td>
                                                 <td>
-                                                    @{ 
-                                                        Random rand = new Random();
-                                                        int a = rand.GetHashCode();
-                                                        //int a = emp.GetHashCode();
-                                                    }
-                                                    <button type="button" data-toggle="collapse" class="accordion-toggle btn btn-success" data-target="#@a">
+                                                    <button type="button" data-toggle="collapse" class="accordion-toggle btn btn-success" data-target="#@(post.GetHashCode())">
                                                         Розгорнути Comments
                                                     </button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="6" class="hiddenRow">
-                                                    <div class="accordian-body collapse" id="@a">
+                                                    <div class="accordian-body collapse" id="@(post.GetHashCode())">
                                                         <table class="table table-condensed table-striped" style="border-collapse:collapse">
                                                             <thead>
                                                                 <tr>
@@ -108,44 +145,33 @@
                                                             </thead>
 
                                                             <tbody>
-                                                                @if (post?.Comments?.Count != 0)
+                                                                @foreach (var com in post.Comments)
                                                                 {
-                                                                    <p>ssss</p>
-
+                                                                    <tr>
+                                                                        <td>
+                                                                            @Html.DisplayFor(modelItem => com.Id)
+                                                                        </td>
+                                                                        <td>
+                                                                            @Html.DisplayFor(modelItem => com.CreatedAt)
+                                                                        </td>
+                                                                        <td>
+                                                                            @Html.DisplayFor(modelItem => com.Likes)
+                                                                        </td>
+                                                                        <td>
+                                                                            @Html.DisplayFor(modelItem => com.CreatedAt)
+                                                                        </td>
+                                                                        <td>
+                                                                            @Html.DisplayFor(modelItem => com.Body)
+                                                                        </td>
+                                                                    </tr>
                                                                 }
-                                                                @*@foreach (var com in post.Comments)
-                                                                    {
-
-                                                                        <tr>
-                                                                            <td>
-                                                                                @Html.DisplayFor(modelItem => com.id)
-                                                                            </td>
-                                                                            <td>
-                                                                                @Html.DisplayFor(modelItem => com.createdAt)
-                                                                            </td>
-                                                                            <td>
-                                                                                @Html.DisplayFor(modelItem => com.likes)
-                                                                            </td>
-                                                                            <td>
-                                                                                @Html.DisplayFor(modelItem => com.createdAt)
-                                                                            </td>
-                                                                            <td>
-                                                                                @Html.DisplayFor(modelItem => com.body)
-                                                                            </td>
-                                                                        </tr>
-                                                                    }*@
-
-
                                                             </tbody>
-
                                                         </table>
                                                     </div>
                                                 </td>
                                             </tr>
                                         }
-
                                     </tbody>
-
                                 </table>
                             </div>
                         </td>
@@ -156,9 +182,3 @@
     }
 </body>
 </html>
-
-
-
-@*<td>
-        <a asp-action="Details" asp-route-id="@item.id">Details</a>
-    </td>*@

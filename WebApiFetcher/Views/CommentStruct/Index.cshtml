@@ -5,50 +5,37 @@
 
 <html>
 <body>
-    <form method="POST">
-        <label for="userId">User id-></label>
-        <input type="text" data-val="true" id="userId" name="userId" size="15" class="rounded"
-               placeholder="Enter user id" data-val-required="The user id field is required." />
-        <input type="submit" />
-
+    <form class="form-inline" method="POST">
+        <div class="form-group col-md-offset-3">
+            <label for="userId" class="label label-primary label-btn">Enter user id:</label>
+            <input id="userId" name="userId" class="form-control " />
+        </div>
+        <button type="submit" class="btn btn-success">Send</button>
     </form>
     @if (Model != null)
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LongestComment)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.MostLikedComment)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CommentsCount)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                    <td>
-                        @Html.DisplayFor(model => model.LongestComment)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.MostLikedComment)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.CommentsCount)
-                    </td>
-                   
-                    <td>
-                        <a asp-action="Details" asp-route-id="">Details</a>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
+    <table class="table table-bordered table-hover table-striped d-lg-table-cell">
+        <thead>
+            <tr>
+                <th>Longest comment </th>
+                <th>Most liked comment</th>
+                <th>Comments count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.LongestComment)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.MostLikedComment)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.CommentsCount)
+                </td>
+            </tr>
+        </tbody>
+    </table>
     }
 </body>
 </html>

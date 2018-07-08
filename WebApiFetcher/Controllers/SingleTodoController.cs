@@ -13,13 +13,12 @@ namespace WebApiFetcher.Services
         // GET: SingleTodo
         public ActionResult Index(int id)
         {
-            UserService service = new UserService();
+            UserService Service = new UserService();
             List<User> users = new List<User>();
             Todo todo = new Todo();
             if (ModelState.IsValid)
             {
-                users = service.GetUsers()?.Result;
-                todo = users.SelectMany(x => x.Todos).FirstOrDefault(x => x.Id == id);
+                todo = Service.UsersList.SelectMany(x => x.Todos).FirstOrDefault(x => x.Id == id);
             }
             return View(todo);
         }

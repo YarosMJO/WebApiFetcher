@@ -5,17 +5,17 @@ using WebApiFetcher.Models;
 
 namespace WebApiFetcher.Controllers
 {
-    public class UserController : Controller
+    public class UsersController : Controller
     {
-        // GET: User/GetUsers
+        // GET: Users
         public ActionResult Index()
         {
-            UserService service = new UserService();
+            UserService Service = new UserService();
             List<User> users = new List<User>();
 
             if (ModelState.IsValid)
             {
-                users = service.GetUsers()?.Result;
+                users = Service.GetUsers();
             }
             return View(users);
         }
