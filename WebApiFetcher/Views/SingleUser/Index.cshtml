@@ -14,8 +14,7 @@
                     <h2> @Html.DisplayFor(model => model.Name)</h2>
                     Created at: <span class="createdAt-text">@Html.DisplayFor(model => model.CreatedAt)</span>
                     <p>E-mail:<span> @Html.DisplayFor(model => model.Email)</span></p>
-                    <button type="button" class="btn btn-info " target="_blank" href="@Url.Action("Index","PostStruct",new { userId = Model.Id })"> Posts </button>
-                    <button type="button" class="btn btn-info"  target="_blank" href="@Url.Action("Index","CommentStruct",new { userId = Model.Id })">Comments </button>
+  
                 </div>
             </div>
         </div>

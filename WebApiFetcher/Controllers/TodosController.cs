@@ -5,14 +5,14 @@ using WebApiFetcher.Services;
 
 namespace WebApiFetcher.Controllers
 {
-    public class TodoController : Controller
+    public class TodosController : Controller
     {
-        // GET: Todo
+        // GET: Todos
         public IActionResult Index()
         {
             return View();
         }
-        // POST: Todo
+        // POST: Todos
         [HttpPost]
         public IActionResult Index(int? userId)
         {

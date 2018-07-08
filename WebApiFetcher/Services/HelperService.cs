@@ -12,7 +12,7 @@ namespace WebApiFetcher
     public class HelperService
     {
         public List<User> UsersList { get; private set; }
-        HttpClient client;
+        private HttpClient client;
         public HelperService()
         {
             client = new HttpClient();

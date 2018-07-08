@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebApiFetcher.Models.Todo>
+@{
+    ViewData["Title"] = "Index";
+}
+<html>
+<body>
+    @if (Model != null)
+    {
+    <table class="table table-bordered table-hover table-striped d-lg-table-cell">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Created at</th>
+                <th>Is Complete</th>
+                <th>User id</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsComplete)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+            </tr>
+    }
+
+        </tbody>
+    </table>
+    }
+</body>
+</html>

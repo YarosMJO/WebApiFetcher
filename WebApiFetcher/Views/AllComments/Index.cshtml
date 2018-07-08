@@ -1,28 +1,19 @@
-﻿@model IEnumerable<WebApiFetcher.Models.Post>
+﻿@model IEnumerable<WebApiFetcher.Models.Comment>
 @{
     ViewData["Title"] = "Index";
 }
-
 <html>
 <body>
-    <form class="form-inline" method="POST">
-        <div class="form-group col-md-offset-3">
-            <label for="userId" class="label label-primary label-btn">Enter user id:</label>
-            <input id="userId" name="userId" class="form-control " />
-        </div>
-        <button type="submit" class="btn btn-success">Send</button>
-    </form>
     @if (Model != null)
     {
     <table class="table table-bordered table-hover table-striped d-lg-table-cell">
         <thead>
             <tr>
                 <th>Id</th>
-                <th> User id</th>
-                <th>Title</th>
+                <th>User id</th>
                 <th>Created at</th>
-                <th> Likes </th>
-                <th> Body</th>
+                <th>Likes</th>
+                <th>Body</th>
             </tr>
         </thead>
         <tbody>
@@ -37,9 +28,6 @@
                     @Html.DisplayFor(modelItem => item.UserId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.CreatedAt)
                 </td>
                 <td>
@@ -50,10 +38,9 @@
                 </td>
             </tr>
     }
+
         </tbody>
     </table>
     }
 </body>
 </html>
-
-
