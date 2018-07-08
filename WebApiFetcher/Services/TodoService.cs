@@ -11,7 +11,7 @@ namespace WebApiFetcher.Services
         public async Task<List<Todo>> GetTodosAsync(int? id)
         {
             List<User> users = await RunAsync();
-            List<Todo> Todos = users?.Find(y => y?.id == id)?.Todos?.Where(x => x?.isComplete == true)?.ToList();
+            List<Todo> Todos = users?.Find(y => y?.Id == id)?.Todos?.Where(x => x?.IsComplete == true)?.ToList();
             return Todos;
         }
     }

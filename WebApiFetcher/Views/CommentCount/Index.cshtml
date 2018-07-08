@@ -20,19 +20,19 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.First().id)
+                        @Html.DisplayNameFor(model => model.First().Id)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.First().userId)
+                        @Html.DisplayNameFor(model => model.First().UserId)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.First().createdAt)
+                        @Html.DisplayNameFor(model => model.First().CreatedAt)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.First().likes)
+                        @Html.DisplayNameFor(model => model.First().Likes)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.First().body)
+                        @Html.DisplayNameFor(model => model.First().Body)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.First().Comments)
@@ -46,25 +46,25 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.id)
+                            @Html.DisplayFor(modelItem => item.Id)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.userId)
+                            @Html.DisplayFor(modelItem => item.UserId)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.createdAt)
+                            @Html.DisplayFor(modelItem => item.CreatedAt)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.likes)
+                            @Html.DisplayFor(modelItem => item.Likes)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.body)
+                            @Html.DisplayFor(modelItem => item.Body)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Comments)
                         </td>
                         <td>
-                            <a asp-action="Details" asp-route-id="@item.id">Details</a>
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
                         </td>
                     </tr>
                 }

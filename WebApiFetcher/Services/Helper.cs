@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -23,11 +24,8 @@ namespace WebApiFetcher
         public async Task<List<T>> GetAsync<T>(string path)
         {
             List<T> data = null;
-            HttpResponseMessage response = await client.GetAsync(path);
-            if (response.IsSuccessStatusCode)
-            {
-                data = await response.Content.ReadAsAsync<List<T>>();
-            }
+            String response = await client.GetStringAsync(path);
+            data = JsonConvert.DeserializeObject<List<T>>(response);
             return data;
         }
         public async Task<List<User>> RunAsync()
@@ -42,19 +40,19 @@ namespace WebApiFetcher
                 List<Comment> Comments = await GetAsync<Comment>("https://5b128555d50a5c0014ef1204.mockapi.io/comments");
 
                 var PostsWithComments = from p in Posts
-                                        join c in Comments on p.id equals c.postId
-                                        select (Posts: p.id, p.createdAt, p.title, p.body, p.userId, p.likes, p.Comments = Comments);
+                                        join c in Comments on p.Id equals c.PostId
+                                        select (Posts: p.Id, p.CreatedAt, p.Title, p.Body, p.UserId, p.Likes, p.Comments = Comments);
 
                 List<User> result = (from u in Users
-                                     join p in PostsWithComments on u.id equals p.userId
-                                     join t in Todos on u.id equals t.userId
+                                     join p in PostsWithComments on u.Id equals p.UserId
+                                     join t in Todos on u.Id equals t.UserId
                                      select new User
                                      {
-                                         id = u.id,
-                                         createdAt = u.createdAt,
-                                         name = u.name,
-                                         avatar = u.avatar,
-                                         email = u.email,
+                                         Id = u.Id,
+                                         CreatedAt = u.CreatedAt,
+                                         Name = u.Name,
+                                         Avatar = u.Avatar,
+                                         Email = u.Email,
                                          Posts = u.Posts = Posts,
                                          Todos = u.Todos = Todos
                                      }).ToList();

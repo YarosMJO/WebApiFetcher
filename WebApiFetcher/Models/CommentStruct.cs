@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace WebApiFetcher.Models
+﻿namespace WebApiFetcher.Models
 {
     public class CommentStruct
     {
-        public Comment longestComment { get; set; }
-        public Comment mostLikedComment { get; set; }
-        public int? commentsCount { get; set; }
+        public Comment LongestComment { get; set; }
+        public Comment MostLikedComment { get; set; }
+        public int? CommentsCount { get; set; }
     }
 }

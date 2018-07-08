@@ -1,0 +1,50 @@
+﻿@model WebApiFetcher.Models.User
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html>
+<body>
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-hover d-lg-table-cell">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">
+                       @Html.DisplayNameFor(model => model.Avatar)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.CreatedAt)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                    <tr scope="row">
+                    
+                        <td>
+                            <img src="@Html.DisplayFor(model => model.Avatar)" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.CreatedAt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Email)
+                        </td>
+                      
+                    </tr>
+            </tbody>
+        </table>
+    }
+</body>
+</html>
+

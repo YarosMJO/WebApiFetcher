@@ -12,21 +12,21 @@ namespace WebCoreApi.Services
         public async Task<PostStruct> GetPostStructureAsync(int? id)
         {
             List<User> users = await RunAsync();
-            var user = users.FirstOrDefault(y => y.id == id);
+            var user = users.FirstOrDefault(y => y.Id == id);
 
-            var latestPost = user?.Posts?.FirstOrDefault(x => x?.createdAt == user?.Posts?.Max(y => y?.createdAt));
+            var latestPost = user?.Posts?.FirstOrDefault(x => x?.CreatedAt == user?.Posts?.Max(y => y?.CreatedAt));
             var postsCount = latestPost?.Comments?.Count();
-            var unTodo = user?.Todos?.Where(x => x?.isComplete != true)?.Count();
+            var unTodo = user?.Todos?.Where(x => x?.IsComplete != true)?.Count();
             var bestCommented = user?.Posts?.FirstOrDefault(x => x?.Comments?.Count > 80);
-            var bestLiked = user?.Posts?.Where(x => x?.likes == user?.Posts.Max(y => y?.likes))?.First();
+            var bestLiked = user?.Posts?.Where(x => x?.Likes == user?.Posts.Max(y => y?.Likes))?.First();
 
             return new PostStruct()
             {
-                latestPost = latestPost ?? null,
-                postsCount = postsCount ?? 0,
-                unTodo = unTodo ?? 0,
-                bestCommented = bestCommented ?? null,
-                bestLiked = bestLiked ?? null
+                LatestPost = latestPost ?? null,
+                PostsCount = postsCount ?? 0,
+                UnTodo = unTodo ?? 0,
+                BestCommented = bestCommented ?? null,
+                BestLiked = bestLiked ?? null
             };
         }
     }

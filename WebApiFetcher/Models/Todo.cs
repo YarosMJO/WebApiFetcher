@@ -1,21 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿using Newtonsoft.Json;
+using System;
 namespace WebApiFetcher.Models
 {
     public class Todo : IComparable
     {
-        public int id { get; set; }
-        public DateTime createdAt { get; set; }
-        public string name { get; set; }
-        public bool isComplete { get; set; }
-        public int userId { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("createdAt")]
+        public DateTime CreatedAt { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("isComplete")]
+        public bool IsComplete { get; set; }
+        [JsonProperty("userId")]
+        public int UserId { get; set; }
 
         public int CompareTo(object obj)
         {
-            return name.Length.CompareTo(obj.ToString().Length);
+            return Name.Length.CompareTo(obj.ToString().Length);
         }
     }
 }

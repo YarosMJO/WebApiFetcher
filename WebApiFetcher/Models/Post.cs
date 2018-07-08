@@ -1,18 +1,22 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace WebApiFetcher.Models
 {
     public class Post
     {
-        public int id { get; set; }
-        public DateTime createdAt { get; set; }
-        public string title { get; set; }
-        public string body { get; set; }
-        public int userId { get; set; }
-        public int likes { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("createdAt")]
+        public DateTime CreatedAt { get; set; }
+        [JsonProperty("title")]
+        public string Title { get; set; }
+        [JsonProperty("body")]
+        public string Body { get; set; }
+        [JsonProperty("userId")]
+        public int UserId { get; set; }
+        [JsonProperty("likes")]
+        public int Likes { get; set; }
         public List<Comment> Comments { get; set; }
     }
 }

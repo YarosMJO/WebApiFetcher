@@ -1,0 +1,56 @@
+﻿@model WebApiFetcher.Models.Post
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html>
+<body>
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-hover d-lg-table-cell">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.CreatedAt)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Likes)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.UserId)
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr scope="row">
+
+                    <td>
+                        @Html.DisplayFor(model => model.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.CreatedAt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Likes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.UserId)
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    }
+</body>
+</html>
+

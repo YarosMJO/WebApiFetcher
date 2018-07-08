@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "GetUsers";
 }
-
 <html>
 <body>
 
@@ -12,13 +11,10 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.First().avatar)
+                        @Html.DisplayNameFor(model => model.First().Name)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.First().name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.First().email)
+                        @Html.DisplayNameFor(model => model.First().Email)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.First().Posts)
@@ -32,14 +28,10 @@
 
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.avatar)
+                            <a class="nav-link" href="@Url.Action("Index","SingleUser",new { id = item.Id })">  @Html.DisplayFor(modelItem => item.Name) </a>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.email)
-
+                            @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td>
                             <button type="button" data-toggle="collapse" class="accordion-toggle btn btn-success" data-target="#@(item.GetHashCode())">
@@ -54,13 +46,13 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.First().Posts.First().title)
+                                                @Html.DisplayNameFor(model => model.First().Posts.First().Title)
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.First().Posts.First().createdAt)
+                                                @Html.DisplayNameFor(model => model.First().Posts.First().CreatedAt)
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.First().Posts.First().likes)
+                                                @Html.DisplayNameFor(model => model.First().Posts.First().Likes)
                                             </th>
                                             <th>
                                                 @Html.DisplayNameFor(model => model.First().Posts.First().Comments)
@@ -68,56 +60,60 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var emp in item.Posts)
+                                        @foreach (var post in item.Posts)
                                         {
 
                                             <tr>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => emp.title)
+                                                    <a class="nav-link" href="@Url.Action("Index","SinglePost",new { id = post.Id })">  @Html.DisplayFor(modelItem => post.Title) </a>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => post.CreatedAt)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => emp.createdAt)
+                                                    @Html.DisplayFor(modelItem => post.Likes)
                                                 </td>
                                                 <td>
-                                                    @Html.DisplayFor(modelItem => emp.likes)
-                                                </td>
-                                                <td>
-                                                    <button type="button" data-toggle="collapse" class="accordion-toggle btn btn-success" data-target="#@(emp.id.GetHashCode())">
+                                                    @{ 
+                                                        Random rand = new Random();
+                                                        int a = rand.GetHashCode();
+                                                        //int a = emp.GetHashCode();
+                                                    }
+                                                    <button type="button" data-toggle="collapse" class="accordion-toggle btn btn-success" data-target="#@a">
                                                         Розгорнути Comments
                                                     </button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="6" class="hiddenRow">
-                                                    <div class="accordian-body collapse" id="@(emp.id.GetHashCode())">
-                                                        <table class="table table-condensed" style="border-collapse:collapse">
+                                                    <div class="accordian-body collapse" id="@a">
+                                                        <table class="table table-condensed table-striped" style="border-collapse:collapse">
                                                             <thead>
                                                                 <tr>
                                                                     <th>
-                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().id)
+                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().Id)
                                                                     </th>
                                                                     <th>
-                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().postId)
+                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().PostId)
                                                                     </th>
                                                                     <th>
-                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().likes)
+                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().Likes)
                                                                     </th>
                                                                     <th>
-                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().createdAt)
+                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().CreatedAt)
                                                                     </th>
                                                                     <th>
-                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().body)
+                                                                        @Html.DisplayNameFor(model => model.First().Posts.First().Comments.First().Body)
                                                                     </th>
                                                                 </tr>
                                                             </thead>
-                                                           
-                                                                <tbody>
-                                                                    @if (emp?.Comments?.Count != 0)
-                                                                    {
-                                                                        <p>ssss</p>
 
-                                                                    }
-                                                                    @*@foreach (var com in emp.Comments)
+                                                            <tbody>
+                                                                @if (post?.Comments?.Count != 0)
+                                                                {
+                                                                    <p>ssss</p>
+
+                                                                }
+                                                                @*@foreach (var com in post.Comments)
                                                                     {
 
                                                                         <tr>
@@ -138,10 +134,10 @@
                                                                             </td>
                                                                         </tr>
                                                                     }*@
-                                                                    
 
-                                                                </tbody>
-                                                            
+
+                                                            </tbody>
+
                                                         </table>
                                                     </div>
                                                 </td>
@@ -158,9 +154,10 @@
             </tbody>
         </table>
     }
-
 </body>
 </html>
+
+
 
 @*<td>
         <a asp-action="Details" asp-route-id="@item.id">Details</a>

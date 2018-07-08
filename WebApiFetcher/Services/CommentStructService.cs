@@ -11,17 +11,17 @@ namespace WebApiFetcher.Services
         {
             List<User> users = await RunAsync();
             var posts = users.SelectMany(x => x?.Posts).ToList();
-            var comments = posts.Find(x => x?.id == postId)?.Comments;
+            var comments = posts.Find(x => x?.Id == postId)?.Comments;
 
-            var longestComment = comments?.Find(x => x?.body?.Length == comments?.Max(y => y?.body?.Length));
-            var mostLikedComment = comments?.Find(x => x?.likes == comments?.Max(y => y?.likes));
-            var commentsCount = comments?.Where(x => x?.likes == 0 || x?.body?.Length < 80)?.ToList()?.Count;
+            var longestComment = comments?.Find(x => x?.Body?.Length == comments?.Max(y => y?.Body?.Length));
+            var mostLikedComment = comments?.Find(x => x?.Likes == comments?.Max(y => y?.Likes));
+            var commentsCount = comments?.Where(x => x?.Likes == 0 || x?.Body?.Length < 80)?.ToList()?.Count;
 
             return new CommentStruct
             {
-                longestComment = longestComment,
-                mostLikedComment = mostLikedComment,
-                commentsCount = commentsCount
+                LongestComment = longestComment,
+                MostLikedComment = mostLikedComment,
+                CommentsCount = commentsCount
             };
         }
     }

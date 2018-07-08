@@ -12,7 +12,7 @@ namespace Services
         public async Task<List<User>> GetUsers()
         {
             List<User> users = await RunAsync();
-            users = users.OrderBy(x => x.name).ToList();
+            users = users.OrderBy(x => x.Name).ToList();
             users?.ForEach(x => x.Todos.Sort(new Comparer()));
             return users;
         }
@@ -21,9 +21,9 @@ namespace Services
         {
             public int Compare(Todo x, Todo y)
             {
-                if (x.name.Length < y.name.Length)
+                if (x.Name.Length < y.Name.Length)
                     return 1;
-                else if (x.name.Length > y.name.Length)
+                else if (x.Name.Length > y.Name.Length)
                     return -1;
                 else return 0;
             }

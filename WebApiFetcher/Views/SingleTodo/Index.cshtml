@@ -1,0 +1,56 @@
+﻿@model WebApiFetcher.Models.Todo
+@{
+    ViewData["Title"] = "Index";
+}
+
+<html>
+<body>
+    @if (Model != null)
+    {
+        <table class="table table-bordered table-hover d-lg-table-cell">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.CreatedAt)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.IsComplete)
+                    </th>
+                    <th scope="col">
+                        @Html.DisplayNameFor(model => model.UserId)
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr scope="row">
+
+                    <td>
+                        @Html.DisplayFor(model => model.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.CreatedAt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.IsComplete)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.UserId)
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    }
+</body>
+</html>
+

@@ -9,7 +9,7 @@ namespace WebApiFetcher.Services
         public async Task<List<Post>> GetCommentsCountAsync(int? id)
         {
             List<User> users = await RunAsync();
-            List<Post> posts = users.Find(y => y.id.Equals(id))?.Posts;
+            List<Post> posts = users.Find(y => y.Id.Equals(id))?.Posts;
             return posts;
         }
     }
